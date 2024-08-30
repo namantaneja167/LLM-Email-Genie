@@ -29,14 +29,14 @@ def generate_email(name: str, job_title: str, company_name: str, purpose: str, t
         messages=[
             {
                 "role": "system",
-                "content": "You are an expert cold email writer. Your task is to write personalized and effective cold emails based on the given information."
+                "content": "You are an expert cold email writer. Your task is to write personalized and effective cold emails based on the given information. The email should always have a clear and concise subject line."
             },
             {
                 "role": "user",
                 "content": prompt
             }
         ],
-        model="llama3-8b-8192",
+        model="llama-3.1-8b-instant",
         max_tokens=1000,
     )
 
@@ -46,7 +46,7 @@ def generate_email(name: str, job_title: str, company_name: str, purpose: str, t
     # Add generated email to chat history
     chat_history.append(("Assistant", generated_email))
 
-    return generated_email, chat_history
+    return generated_email
 
 # Define the Gradio interface
 with gr.Blocks() as app:
